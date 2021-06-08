@@ -15,12 +15,24 @@ class Game {
     });
   }
 
-  start(){
+  async start(){
     if(gameState === 0){
-      //player = new Player();
+      player = new Player();
+
+      var dbref = await database.ref("playerCount").once("value");
+      if(dbref.exists()){
+        playerCount = dbref.val();
+        player.getcount();
+      }
       //player.getCount();
       form = new Form()
       form.display();
     }
   }
-}
+
+  play()
+{
+  form.hide();
+  textSize(30)
+  text("Game Start",120,100)
+}}
